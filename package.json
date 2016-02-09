@@ -1,6 +1,6 @@
 {
     "private": true,
-    "name": "monadic-warsaw-slides-monady-w-javascript",
+    "name": "slides-monads-in-javascript",
     "dependencies": {
         "shower": "^2.0.3"
     }

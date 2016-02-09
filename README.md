@@ -1,7 +1,7 @@
-# monadic-warsaw-slides-monady-w-javascript
+# slides-monads-in-javascript
 
-> Slajdy na #6 spotkanie grupy Monadic Warsaw
+> Slides for #6 meetup Monadic Warsaw group.
 
-Link do wydarzenia: http://www.meetup.com/Monadic-Warsaw/events/228675674/
+More: http://www.meetup.com/Monadic-Warsaw/events/228675674/
 
-![](images/logo.png)
+![](images/logo.jpeg)

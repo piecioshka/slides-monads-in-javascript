@@ -1,0 +1,41 @@
+.slide .card {
+    position: relative;
+    height: 100%;
+}
+
+.slide .card p {
+    display: block;
+    margin: 10px 0;
+    height: 30px;
+    line-height: 30px;
+}
+
+.slide .card .card-position {
+    margin-top: 120px;
+}
+
+.slide .card .card-interests {
+    margin-top: 100px;
+}
+
+.slide .card .card-motto {
+    margin-top: 100px;
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    color: #999;
+}
+
+.slide .card .card-me {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+}
+
+.slide .card .card-me > a > img {
+    float: left;
+}
+
+.slide .card .card-me > figcaption {
+    text-align: right;
+}
