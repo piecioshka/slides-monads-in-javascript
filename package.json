@@ -1,3 +1,7 @@
 {
-    "private": true
+    "private": true,
+    "name": "monadic-warsaw-slides-monady-w-javascript",
+    "dependencies": {
+        "shower": "^2.0.3"
+    }
 }
