@@ -8,7 +8,7 @@ More: http://www.meetup.com/Monadic-Warsaw/events/228675674/
 
 ## Preview
 
-Available here: http://piecioshka.pl/slides/monads-in-javascript
+Available here: http://piecioshka.pl/slides/monads-in-javascript/
 
 ## Setup
 
