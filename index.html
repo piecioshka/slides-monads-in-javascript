@@ -3,14 +3,14 @@
 <head>
     <title>Monadic Warsaw: Monads in JavaScript</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <link rel="stylesheet" href="node_modules/shower-ribbon/styles/screen-16x10.css">
-    <link rel="stylesheet" href="styles/slides-card.css">
-    <link rel="stylesheet" href="styles/slides-love.css">
-    <link rel="stylesheet" href="styles/slides-social.css">
+    <link rel="stylesheet" href="node_modules/shower-ribbon/styles/screen-16x10.css"/>
+    <link rel="stylesheet" href="styles/slides-card.css"/>
+    <link rel="stylesheet" href="styles/slides-social.css"/>
+    <link rel="stylesheet" href="styles/code.css"/>
 </head>
 <body class="shower list">
     <header class="caption">
@@ -53,13 +53,6 @@
     </section>
 
     <section class="slide">
-        <div class="cover love">
-            <h2>JavaScript Ninja</h2>
-            <img src="pictures/js.jpg" alt="">
-        </div>
-    </section>
-
-    <section class="slide">
         <div class="social">
             <h2>Where am I?</h2>
 
@@ -97,20 +90,68 @@
         <h2>Short reminder:</h2>
         <h3 class="shout">What's monad?</h3>
     </section>
-
+    
     <section class="slide">
-        <h3 class="shout">How it looks?</h3>
+        <h2>The Monadic Laws</h2>
+
+        <ul>
+            <li>a monad is a wrapper around another type</li>
+            <li>all monads must have a function to wrap themselves around other data types</li>
+            <li>all monads must be able to feed the value or values that they wrap into another function, as long as that function eventually returns a monad</li>
+        </ul>
     </section>
 
     <section class="slide">
-        <h3 class="shout">Where to use?</h3>
+        <h2>jQuery (chaining)</h2>
+
+        <pre style="font-size: 45px;">
+            <code><mark class="important">$</mark> ('div')</code>
+            <code>      <mark>.addClass</mark> ('foo')</code>
+            <code>      <mark>.text</mark> ('bar')</code>
+            <code>      <mark>.text</mark> ('bar')</code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <h2>Monads Types</h2>
+
+        <ul>
+            <li>Identity Monad</li>
+            <li>AJAX Monad</li>
+            <li>Maybe Monad</li>
+            <li>Promise Monad</li>
+            <li>List monad</li>
+            <li>Continuation monad</li>
+        </ul>
+    </section>
+
+    <section class="slide" style="padding-top: 30px;">
+        <pre>
+            <code>var <mark>unit</mark> = (value) => value;</code>
+            <code>var <mark class="important">bind</mark> = (<mark>monad</mark>, <mark class="peace">unit</mark>) => {</code>
+            <code>    return (value) => {</code>
+            <code>        return <mark>monad</mark> (() => {</code>
+            <code>            return <mark class="peace">unit</mark> (value);</code>
+            <code>        });</code>
+            <code>    }</code>
+            <code>}</code>
+            <code>var display = <mark class="important">bind</mark> (unit, alert);</code>
+            <code>var displayAlert = display('cookie');</code>
+            <code>displayAlert();</code>
+        </pre>
     </section>
 
     <section class="slide">
         <h2>Resources</h2>
 
         <ol>
-            <li>Monads & Gonads - Douglas Crockford (GoogleTechTalks) - <a href="https://www.youtube.com/watch?v=b0EF0VTs9Dc">https://www.youtube.com/watch?v=b0EF0VTs9Dc</a></li>
+            <li><a href="https://www.youtube.com/watch?v=b0EF0VTs9Dc">Monads & Gonads - Douglas Crockford (GoogleTechTalks)</a></li>
+            <li><a href="https://curiosity-driven.org/monads-in-javascript">Monads in JavaScript</a></li>
+            <li><a href="https://channel9.msdn.com/shows/Going+Deep/Brian-Beckman-Dont-fear-the-Monads/">Brian Beckman: Don't fear the Monad</a></li>
+            <li><a href="https://gist.github.com/sym3tri/4370733">So simple MONAD implementation</a></li>
+            <li><a href="https://www.reddit.com/r/javascript/comments/1fv3w5/deriving_a_useful_monad_in_javascript/">Step by step into Monads</a></li>
+            <li><a href="https://github.com/jgnewman/monad.js">Use monads in JavaScript without needing to know how they work.</a></li>
+            <li><a href="https://www.quora.com/Is-jQuery-a-monad">jQuery is not a monad</a></li>
         </ol>
     </section>
 

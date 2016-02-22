@@ -64,7 +64,7 @@ Let's do it!
     have nested bind methods, and that does the same thing as calling bind with a function that calls bind
   
 That's monad.
-   
+
 ```javasript
 bind(monad, func)
 monad.bind(func)
@@ -141,5 +141,70 @@ var result = new Just(5).bind(function (value) {
     });
 });
 
-console.log(result);
-​```
+console.log(result)
+```
+
+Great example of another way to works with `null` values.
+
+```javascript
+function getUser() {
+    return new Just({
+        getAvatar: function() {
+            return Nothing; // no avatar
+        }
+    });
+}
+
+var url = getUser()
+    .bind(user => user.getAvatar())
+    .bind(avatar => avatar.url);
+
+if (url instanceof Just) {
+    print('URL has value: ' + url.value);
+} else {
+    print('URL is empty.');
+}
+```
+
+## List monad
+
+```javascript
+function* unit(value) {
+    yield value;
+}
+​
+function* bind(list, transform) {
+    for (var item of list) {
+        yield* transform(item);
+    }
+}
+```
+
+```javascript
+var result = bind([0, 1, 2], function (element) {
+    return bind([0, 1, 2], function* (element2) {
+        yield element + element2;
+    });
+});
+​
+for (var item of result) {
+    print(item);
+}
+```
+
+## Continuation monad
+
+* `Promise.resolve(value)` will serve as the Unit function
+* `Promise.prototype.then` will serve as the Bind function
+
+```javascript
+var result = Promise.resolve(5).then(function(value) {
+    return Promise.resolve(6).then(function(value2) {
+        return value + value2;
+    });
+});
+
+result.then(function(value) {
+    print(value);
+});
+```
