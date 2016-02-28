@@ -2,3 +2,8 @@ mark.peace {
     background: #30db4e;
     color: #fff;
 }
+
+mark.warning {
+    background: #db8012;
+    color: #fff;
+}
