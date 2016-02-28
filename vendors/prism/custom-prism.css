@@ -1,0 +1,20 @@
+.slide.prism {
+    padding-top: 0;
+}
+
+.slide.prism pre[class*="language-"] {
+    background: none;
+}
+
+.slide.prism pre[class*="language-"] code {
+    line-height: 50px;
+}
+
+.slide.prism pre[class*="language-"].line-numbers {
+    padding-left: 2.5em;
+}
+
+.slide.prism pre[class*="language-"].line-numbers code {
+    margin-left: 0;
+    padding-left: 0;
+}

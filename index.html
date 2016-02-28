@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="styles/slides-card.css"/>
     <link rel="stylesheet" href="styles/slides-social.css"/>
     <link rel="stylesheet" href="styles/code.css"/>
+
+    <link rel="stylesheet" href="vendors/prism/prism.css"/>
+    <link rel="stylesheet" href="vendors/prism/custom-prism.css"/>
 </head>
 <body class="shower list">
     <header class="caption">
@@ -90,11 +93,11 @@
         <h2>Short reminder:</h2>
         <h3 class="shout">What's monad?</h3>
     </section>
-    
+
     <section class="slide">
         <h2>The Monadic Laws</h2>
 
-        <ul>
+        <ul style="font-size: 35px;">
             <li>a monad is a wrapper around another type</li>
             <li>all monads must have a function to wrap themselves around other data types</li>
             <li>all monads must be able to feed the value or values that they wrap into another function, as long as that function eventually returns a monad</li>
@@ -102,43 +105,71 @@
     </section>
 
     <section class="slide">
+        <h2>Eternal question:</h2>
+        <h3 class="shout">If jQuery<br/>is a monad?</h3>
+    </section>
+
+    <section class="slide">
         <h2>jQuery (chaining) is <mark class="warning">not a monad</mark></h2>
 
-        <pre style="font-size: 45px;">
+        <pre style="font-size: 40px;">
             <code><mark class="important">$</mark> ('div')</code>
             <code>      <mark>.addClass</mark> ('foo')</code>
             <code>      <mark>.text</mark> ('bar')</code>
-            <code>      <mark>.data</mark> ('tag-name', 'div')</code>
+            <code><mark class="peace">$('div')</mark> <mark class="comment">// return jQuery object</mark></code>
+            <code><mark class="peace">$($($('div')))</mark> <mark class="comment">// returns the same</mark></code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <h3 class="shout">Simple Monad definition</h3>
+    </section>
+
+    <section class="slide prism">
+        <pre style="font-size: 40px;" class="language-javascript line-numbers">
+            <code>
+                function wrap(value) {
+                    return function () {
+                        return value;
+                    }
+                }
+
+                function bind(monad, f) {
+                    return f(monad());
+                }
+            </code>
+        </pre>
+    </section>
+
+    <section class="slide prism">
+        <pre style="font-size: 30px;" class="language-javascript line-numbers">
+            <code>
+                var monad = wrap('cookie');
+                bind(monad, (value) => {
+                    console.info(value);
+                    return wrap(value);
+                });
+                monad = bind(monad, (value) => {
+                    return wrap({ type: value });
+                });
+                bind(monad, (value) => {
+                    console.log(value);
+                });
+            </code>
         </pre>
     </section>
 
     <section class="slide">
         <h2>Monads Types</h2>
 
-        <ul>
+        <ul style="font-size: 30px;">
             <li>Identity Monad</li>
-            <li>AJAX Monad</li>
             <li>Maybe Monad</li>
-            <li>Promise Monad</li>
+            <li><mark>Promise Monad</mark> - native support by <code>Promise</code> constructor</li>
+            <li>AJAX Monad</li>
             <li>List monad</li>
             <li>Continuation monad</li>
         </ul>
-    </section>
-
-    <section class="slide" style="padding-top: 30px;">
-        <pre>
-            <code>var <mark>unit</mark> = (value) => value;</code>
-            <code>var <mark class="important">bind</mark> = (<mark>monad</mark>, <mark class="peace">unit</mark>) => {</code>
-            <code>    return (value) => {</code>
-            <code>        return <mark>monad</mark> (() => {</code>
-            <code>            return <mark class="peace">unit</mark> (value);</code>
-            <code>        });</code>
-            <code>    }</code>
-            <code>}</code>
-            <code>var display = <mark class="important">bind</mark> (unit, alert);</code>
-            <code>var displayAlert = display('cookie');</code>
-            <code>displayAlert();</code>
-        </pre>
     </section>
 
     <section class="slide">
@@ -148,11 +179,11 @@
             <li><a href="https://www.youtube.com/watch?v=b0EF0VTs9Dc">Monads & Gonads - Douglas Crockford (GoogleTechTalks)</a></li>
             <li><a href="https://curiosity-driven.org/monads-in-javascript">Monads in JavaScript</a></li>
             <li><a href="https://channel9.msdn.com/shows/Going+Deep/Brian-Beckman-Dont-fear-the-Monads/">Brian Beckman: Don't fear the Monad</a></li>
+            <li><a href="http://www.lispcast.com/monads-and-objects">Monads and Objects</a></li>
             <li><a href="https://gist.github.com/sym3tri/4370733">So simple MONAD implementation</a></li>
             <li><a href="https://www.reddit.com/r/javascript/comments/1fv3w5/deriving_a_useful_monad_in_javascript/">Step by step into Monads</a></li>
             <li><a href="https://github.com/jgnewman/monad.js">Use monads in JavaScript without needing to know how they work.</a></li>
             <li><a href="https://www.quora.com/Is-jQuery-a-monad">jQuery is not a monad</a></li>
-            <li><a href="http://www.lispcast.com/monads-and-objects">Monads and Objects</a></li>
         </ol>
     </section>
 
@@ -167,5 +198,8 @@
     <script src="node_modules/shower-core/shower.min.js"></script>
     <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
     <!-- Photos by John Carey, fiftyfootshadows.net -->
+
+    <script src="vendors/prism/prism.js"></script>
+    <script src="vendors/prism/custom-prism.js"></script>
 </body>
 </html>
