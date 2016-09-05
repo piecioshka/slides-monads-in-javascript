@@ -1,7 +1,4 @@
 {
     "private": true,
-    "name": "slides-monads-in-javascript",
-    "dependencies": {
-        "shower": "^2.0.3"
-    }
+    "name": "slides-monads-in-javascript"
 }

@@ -65,7 +65,7 @@ Let's do it!
   
 That's monad.
 
-```javasript
+```javascript
 bind(monad, func)
 monad.bind(func)
 ```
